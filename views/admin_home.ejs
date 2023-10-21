@@ -1,0 +1,81 @@
+<!DOCTYPE html >
+<html >
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="../styles/firstpage.css" />
+
+    <title>Admin</title>
+</head>
+
+<body>
+<div id="page">
+    <div id="pagetop">
+        <img src="/images/purple-logo.jpg" style="width: 200px; height: 65px; float: left; position: absolute; left: 0px; ">
+        <form action="/admin" method="get" style="text-align: left;float: right; position: absolute; right: 0px; padding-top: 0px">
+            <br>
+            <button type="submit" name="back" class="myButton" value="Back" style="font-size: large; border: none; box-shadow: none; background:   #1C183D">&#9664; Back</button><br>
+        </form>
+        <p style="text-align: center; padding-top: 15px; font-size: large;position: inherit">ADMIN</p>
+        <p style="text-align: center; padding-top: 10px; font-size: medium;position: inherit">POWERED BY PRAJWAL BR WEBSITES</p>
+
+    </div>
+
+    <div id="main">
+        <div class="content">
+            <div class="main_body" style="text-align: center">
+                <%
+                var s1=dep;
+                var s2=s1.toUpperCase();
+                %>
+                <h2 style="text-align: center; font-size: 25px" id="home"><%=s2%> DEPARTMENT HOME PAGE</h2><br><br>
+                <br><br>
+                <h2 style=" color:  black; font-size: 22px">1.CLICK TO ADD QUESTIONS --->       <a href="/admin/addQuestion/<%=dept%>" name="onadd" >Add </a> </h2>
+
+                <script>
+                    function display() {
+                        document.getElementById("success_message").innerHTML = "Action Successful";
+                        document.getElementById("success_message").style.display = 'block';
+                        // window.location = "https://www.google.co.in";
+                    }
+                    function add() {
+                        document.getElementById("add_question").style.display = 'block';
+                    }
+                    function search() {
+                        if(document.getElementById("search").value === "")
+                        {
+                            document.getElementById("searchNotify").style.display = "block";
+                            document.getElementById("searchNotify").innerHTML = "Search is Empty";
+                            document.getElementById("tableMain").style.display = "block";
+                            document.getElementById("tableSearch").style.display = "none";
+                        }
+                        else
+                        {
+                            document.getElementById("tableMain").style.display = "none";
+                            document.getElementById("tableSearch").style.display = "block";
+                            document.getElementById("searchNotify").style.display = "none";
+                        }
+                    }
+                </script>
+
+                <p id="demo"></p>
+                <p id="demo1"></p>
+                <br><br>
+                <h2 style="color:  black; font-size: 22px">2.CLICK TO VIEW / DELETE QUESTIONS --->     <a href="/admin/questionlist/<%=dept%>" name="ondelete">Delete </a> </h2>
+                <br><br>
+
+                <h2 style=" font-size: 22px ;color: black">3.CLICK TO VIEW LIST OF ATTENDEES --->      <a href="/admin/attendeeList/<%=dept%>" name="onshow" >Show </a> </h2><br><br>
+            </div>
+        </div>
+        <div class="clear">&nbsp;</div>
+    </div>
+    <div id="footer">
+        <p>
+           
+        </p>
+    </div>
+</div>
+<img src="/images/l1.jpg" style="width: 100%; height: 40px; padding-top: 13%">
+
+</body>
+</html>
+

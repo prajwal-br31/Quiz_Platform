@@ -1,0 +1,87 @@
+<!DOCTYPE html >
+<html >
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="../styles/firstpage.css" />
+
+    <title>Admin</title>
+</head>
+
+<body>
+<div id="page">
+    <div id="pagetop" style="display: inline-block">
+        <img src="/images/purple-logo.jpg" style="width: 200px; height: 65px; float: left; position: absolute; left: 0px; ">
+        <div class="links" style="float: left; padding-top: 0px">
+            <form method="post">
+                <ul>
+                    <li><button formaction="/logout" class="new1" >Logout</button></li>
+                    <li><button formaction="/quizdetail" class="new1">Quiz details</button></li>
+                    <li><button formaction="/adlogin" class="new1"> Settings</button></li>
+                    <li><button formaction="/admins" class="new1" >Departments</button></li>
+                    <li><button formaction="/report" class="new1" >Reports</button></li>
+                </ul>
+            </form>
+        </div>
+        <p style="text-align: right; position: absolute; padding-top: 25px ; float: right; right: 150px; font-size: large">ADMIN PAGE</p>
+        <p style="text-align: center; position: absolute; padding-top: 50px ; float: right; right: 100px;">POWERED BY PRAJWAL BR WEBSITES</p>
+    </div>
+
+
+    <div id="main">
+
+        <div class="content">
+            <div class="main_body" style="text-align: left">
+                <p style="color: #07144B; font-size: 20px;">Select department and from - to dates to generate report.</p><br><br>
+                <form method="post">
+                <label style="font-size: large; color: #07144B">Department :</label>
+
+                <select id="seldep"  name="seldep" onchange="changeFunc(<%=count%>)" class="Button" style="width: 60%;height: 45px; font-size: large"  >
+
+                    <option disabled selected value> -- select an option -- </option>
+                    <%
+                    console.log(dep);
+                    console.log(count);
+                    for(var i=0;i<parseInt(count);i++)
+                    {
+                        console.log(dep[i]);
+                    %>
+                    <option  value="<%= dep[i]%>"><%=dep[i]%></option>
+                    <%
+                    }
+                    %>
+                </select><br><br>
+
+                <br>
+                <br><br>
+
+                    <label style="font-size: large; color: #07144B">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;From :</label>
+                    <input type="date" id="seldate" name="seldate"  class="Button" style="width: 30%;">
+
+                    </input>&nbsp;&nbsp;<br><br>
+                    <label style="font-size: large; color: #07144B">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To :</label>
+                    <input type="date" id="seldateto" name="seldateto"  class="Button" style="width: 30%;">
+
+                    </input><br><br>
+                    <div style="padding-left: 230px">
+                    <button formaction="/rep" type="submit" value="Go" name="goButton" class="new1">Go</button>
+                    </div>
+                </form>
+                <br><br>
+            </div>
+
+        </div>
+        <div class="clear">&nbsp;</div>
+    </div>
+    <div id="footer">
+        <p>
+        </p>
+    </div>
+
+
+
+</div>
+
+<img src="/images/l1.jpg" style="width: 100%; height: 40px; padding-top: 9%">
+
+</body>
+</html>

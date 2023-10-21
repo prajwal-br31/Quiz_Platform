@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel='stylesheet' href='/styles/style.css'/>
+    <style>
+        body{
+            background: white;
+        }
+    </style>
+</head>
+<body >
+<div style="text-align: right">    <button class="buttonDownload" type="button" name="download" value="Download" onclick="PrintDoc()">Print </button><br><br> </div>
+
+<div id="printarea">
+
+<div style="padding-left: 2%">
+    <h1  style="font-size: x-large; font-family: 'Cambria Math'; color: black; text-align: center">CANDIDATE WRITTEN TEST DETAILS</h1><br><br>
+    <b style="font-size: large; font-family: 'Cambria Math'; color: black">NAME        : <%= Name%></b><br><br>
+    <b style="font-size: large; font-family: 'Cambria Math'; color: black">MOBILE      : <%= mobile%></b><br><br>
+    <b style="font-size: large; font-family: 'Cambria Math'; color: black">EMAIL ID    : <%= Email%> </b><br><br>
+    <b style="font-size: large; font-family: 'Cambria Math'; color: black">AGE        : <%= Age%></b><br><br>
+    <b style="font-size: large; font-family: 'Cambria Math'; color: black">QUALIFICATIONS    : <%= Qualifications%></b><br><br>
+    <b style="font-size: large; font-family: 'Cambria Math'; color: black">PRESENT/LAST JOB        : <%= Job%></b><br><br>
+    <b style="font-size: large; font-family: 'Cambria Math'; color: black">EXPERIENCE IN YEARS      : <%= Experience%> </b><br><br>
+    <b style="font-size: large; font-family: 'Cambria Math'; color: black">PRESENT / LAST DRAWN SALARY (per annum) : <%= Salarye%>      <br><br>    EXPECTED SALARY  (per annum) : <%= Salaryp%></b><br><br>
+    <b style="font-size: large; font-family: 'Cambria Math'; color: black">TOTAL MARKS SCORED : <%= Marks%></b><br><br>
+</div>
+    <table border="1" class="responstable"  >
+        <tr>
+            <td><b>S.No</b></td>
+            <td><b>Question</b></td>
+            <td><b>Answer</b></td>
+            <td><b>Correct Answer</b></td>
+        </tr>
+        <%
+        for(var i=0;i<count;i++){
+        %>
+        <tr>
+            <td><%= i+1 %></td>
+            <td><%=questions[i]%></td>
+            <td><%=aAnswer[i]%></td>
+            <td><%=cAnswers[i]%></td>
+        </tr>
+        <%
+        }
+        %>
+    </table>
+</div>
+
+<script>
+    function PrintDoc() {
+        var toPrint = document.getElementById('printarea');
+        var popupWin = window.open('', '_blank', 'width=350,height=150,location=no,left=200px');
+        popupWin.document.open();
+        popupWin.document.write('<html><link rel="stylesheet" type="text/css" href="/styles/style.css" /></head><body onload="window.print()">')
+        popupWin.document.write(toPrint.innerHTML);
+        popupWin.document.write('</html>');
+        popupWin.document.close();
+    }
+</script>
+</body>
+</html>
+

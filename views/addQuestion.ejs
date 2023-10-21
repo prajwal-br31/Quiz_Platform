@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel='stylesheet' href='/styles/style.css'/>
+    <style>
+        body{
+            background: lightgrey;
+        }
+    </style>
+</head>
+<body >
+<div >
+<img src="/images/top.jpg" style="position: absolute; width: 100%; padding-top: 0px"/>
+
+<form action="/admin/<%=dept%>" method="get" style="text-align: left;float: right; position: absolute; right: 0px; padding-top: 5px">
+
+    <button type="submit" name="back" class="myButton" value="Back" style="font-size: large; border: none; box-shadow: none; background:   #1C183D">&#9664;  Back</button><br>
+</form>
+</div>
+<%
+var s1=dept;
+var s2=s1.toUpperCase();
+%>
+<form action="/admin/addQuestion/<%=dept%>" method="get" class="elegant-aero" style="padding-top: 180px;width: 100%">
+    <h2 style="color: black; text-align: center">ADD QUESTIONS TO <%=s2%> DEPARTMENT</h2><br>
+
+    <p id="add_question" style="font-family: 'Adobe Caslon Pro'; font-size: large; color: black">Enter question and all the options . Choose the correct answer and click on Add Question .<br><br>
+        <textarea required="required" style=" font-size: large; color: black" placeholder="Enter Question here..." rows="4" cols="50" name="question"></textarea><br>
+
+        <label style=" font-size: large; color: black" for="option1">OPTION 1 :
+            <input type="text"  name="option1" required="required">
+        </label>
+        <label style=" font-size: large; color: black" for="option2">OPTION 2 :
+            <input type="text" name="option2" required="required">
+        </label>
+        <label style=" font-size: large; color: black" for="option3">OPTION 3 :
+            <input type="text" name="option3" required="required">
+        </label>
+        <label style=" font-size: large; color: black" for="option4">OPTION 4 :
+            <input type="text" name="option4" required="required">
+        </label>
+        <label style=" font-size: large; color: black" for="answer">CORRECT ANSWER &nbsp;&nbsp;:
+            <select  style=" font-size: large; color: black" type="text" name="answer" class="form-style-5" required="required">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+
+            </select>
+        </label>
+        <!--<label for="pic">Upload an image :-->
+        <!--<input type="file" name="pic" accept="image/*" >-->
+        <!--</label>-->
+        <div style="padding-left: 40%">
+        <button type='submit'  class="new1" style="color: black">Add Question</button>
+    </div>
+    </p>
+</form>
+<br><br><br><br><br><br><br>
+<img src="/images/l1.jpg" style="width: 100%; height: 40px; padding-top: 0%">
+
+</body>
+</html>
+

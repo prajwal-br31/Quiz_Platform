@@ -1,0 +1,76 @@
+<!DOCTYPE >
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="../styles/firstpage.css" />
+    <title>Start quiz</title>
+</head>
+
+<body>
+<div id="page">
+    <div id="pagetop">
+        <p ><img src="/images/purple-logo.jpg" style="width: 200px; height: 65px; float: left; position: absolute; left: 0px; "><div style="font-size: x-large ; text-align: center; padding-top: 2%">START TEST</div><div  style="font-size: medium ; text-align: center; padding-top: 1%">POWERED BY PRAJWAL BR WEBSITES</div></p>
+    </div>
+    <%
+    var s1=dep;
+    var s2=s1.toUpperCase();
+    var s3=name;
+    var s4=s3.toUpperCase();
+    %>
+    <div id="header">   Read the instructions carefully    <BR><br>
+        <h3 style="color: black; text-align: center">WRITTEN TEST FOR <%= s2%> RECRUITMENT</h3>
+    </div>
+    <script>
+        var mins=parseInt("<%= tlimit%>");
+        var seconds = 60;
+        function setCookie(cname,cvalue) {
+            document.cookie = cname+"="+cvalue;
+        }
+        setCookie("minutes",mins)
+        setCookie("seconds",seconds)
+
+    </script>
+
+    <div id="main">
+        <div class="content">
+            <div class="main_top">
+            </div>
+            <div class="main_body">
+
+                <br>
+                <h2>WELCOME <%= s4%></h2><br>
+                <h2>THE TEST CONSISTS OF <%= num%> QUESTIONS</h2><br>
+                <h2>THE TIME LIMIT TO FINISH THE TEST IS <%= tlimit%> MINUTES</h2><br>
+                <h2>CLICK START TO BEGIN THE TEST</h2><br>
+                <h2>ALL THE BEST!!!</h2>
+                <br><br>
+            </div>
+            <div class="b" style="text-align: center">
+                <br>
+                <!--<a href="/test?questionnumber=1">-->
+                <button class="btn" onclick="fn()" id="start">
+                    START
+                </button>
+                <!--</a>-->
+                <script>
+                    function fn() {
+
+                        window.open("/test?questionnumber=1");
+                        document.getElementById("start").disabled=true;
+
+                    }
+                </script>
+            </div>
+        </div>
+        <div class="clear">&nbsp;</div>
+    </div>
+    <div id="footer">
+        <p>
+            Msrmh online interview.
+        </p>
+    </div>
+</div>
+<img src="/images/l1.jpg" style="width: 100%; height: 40px; padding-top: 11%">
+
+</body>
+</html>

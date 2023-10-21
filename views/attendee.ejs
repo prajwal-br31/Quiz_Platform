@@ -1,0 +1,145 @@
+<!DOCTYPE html >
+<html>
+<head>
+    <link rel='stylesheet' href='/styles/style.css'/>
+    <style>
+        body{
+            background: white;
+        }
+    </style>
+    <title>Admin</title>
+</head>
+
+<body>
+<div >
+    <img src="/images/top.jpg" style="position: absolute; width: 100%"/>
+
+    <form action="/admin/<%=dept%>" method="get" style="text-align: left;float: right; position: absolute; right: 0px; padding-top: 10px">
+
+        <button type="submit" name="back" class="myButton" value="Back" style="font-size: large; border: none; box-shadow: none; background:   #1C183D">&#9664;  Back</button><br>
+    </form>
+</div>
+<%
+var s1=dept;
+var s2=s1.toUpperCase();
+%>
+<div style="padding-top: 10%">
+    <h2 style="color: black; text-align: center">ATTENDEE LIST OF <%=s2%> DEPARTMEMT</h2><br><br>
+    <h2 style="color: black; font-size:large; padding-left: 2%">Select candidates to delete and click on delete button.</h2>
+    <h2 style="color: black; font-size:large; padding-left: 2%">Click on the score of candidate to get report of the candidate.</h2>
+    <h3 style="color: red; text-decoration: underline; padding-left: 2%; text-decoration-color: black">NOTE: Candidate details once deleted will be permanently deleted from database.</h3><br><br>
+<form action="/admin/attendeeList/<%= dept %>" method="get" style="text-align: center">
+    <label style="text-align: center; color: black; font-size: large">ENTER NAME/MOBILE NUMBER OF CANDIDATE TO SEARCH</label><br><br>
+    <input type="search" id="search" style="font-size: large" placeholder="Search for candidate.." name="search" class="new1">&nbsp;&nbsp;
+    <button type="submit" class="new1" style="font-size: large">Search</button>
+    <br><br><br><br>
+</form>
+
+<p id="searchNotify"></p>
+
+<%
+if(searchCount == 0 && searchAttempt == 0){
+%>
+<br><br>
+
+<form action="/admin/attendeeList/<%= dept %>" method="get">
+    <table border="1" id="tableMain" class="responstable">
+        <tr>
+            <td><b>Select</b></td>
+            <td><b>Date</b></td>
+            <td><b>Candidate name,Age,contact</b></td>
+            <td><b>Qualification & year of passing</b></td>
+            <td><b>Experience in years</b></td>
+            <td><b>Present/Last job</b></td>
+            <td><b>Present salary</b></td>
+            <td><b>Expected salary</b></td>
+            <td><b>Score</b></td>
+
+        </tr>
+        <%
+        for(var i = 0;i < attendeeCount;i++){
+        %>
+        <tr>
+            <td><input type="checkbox" name="attendee" value="<%= aMobile[i] %>"/></td>
+            <td><%= aDate[i] %></td>
+            <td>Name: <%= aName[i] %><br>
+                Age: <%= aAge[i] %><br>
+                No: <%= aMobile[i] %><br>
+                Email: <%= aEmail[i] %></td>
+            <td><%= aQ[i] %><br>
+                KnC: <%= aKnc[i] %></td>
+            <td><%= aE[i] %></td>
+            <td><%= aJob[i] %></td>
+            <td><%= aSalaryp[i] %></td>
+            <td><%= aSalarye[i] %></td>
+            <td><a href="/admin/answerlist/<%= dept %>/<%= aMobile[i] %>" target="_blank"><p><u><%= aRes[i] %></u></p>
+                </a></td>
+        </tr>
+        <%
+        }
+        %>
+    </table>
+    <div style="text-align: center">
+        <input type="submit" class="new1" style="font-size: large" value="Delete"/> <br><br>
+    </div>
+</form>
+<%
+}
+else if(searchCount == 0 && searchAttempt == 1){
+%>
+<p id="noresult" style="text-align: center; font-size: large; color: red; padding-top: 3%">NO RESULT FOUND</p>
+<%
+}
+else {
+%>
+<form action="/admin/attendeeList/<%= dept %>" method="get">
+    <table border="1" id="tableSearch" class="responstable">
+        <tr>
+            <td><b>Select</b></td>
+            <td><b>Date</b></td>
+            <td><b>Candidate name,Age,contact</b></td>
+            <td><b>Qualification & year of passing</b></td>
+            <td><b>Experience in years</b></td>
+            <td><b>Present/Last job</b></td>
+            <td><b>Present salary</b></td>
+            <td><b>Expected salary</b></td>
+            <td><b>Score</b></td>
+        </tr>
+        <%
+        for(i = 0;i < searchCount;i++){
+        %>
+        <tr>
+            <td><input type="checkbox" name="attendee" value="<%= sMobile[i] %>"/></td>
+            <td><%= sDate[i] %></td>
+            <td>Name: <%= sName[i] %><br>
+                Age: <%= sAge[i] %><br>
+                No: <%= sMobile[i] %><br>
+                Email: <%= sEmail[i] %></td>
+            <td><%= sQ[i] %><br>
+                KnC: <%= sKnc[i] %></td>
+            <td><%= sE[i] %></td>
+            <td><%= sJob[i] %></td>
+            <td><%= sSalaryp[i] %></td>
+            <td><%= sSalarye[i] %></td>
+            <td><a href="/admin/answerlist/<%= dept %>/<%= sMobile[i] %>" target="_blank"><p><u><%= sRes[i] %></u></p>
+                </a></td>
+        </tr>
+        <%
+        }
+        %>
+    </table>
+    <div style="text-align: center">
+        <input type="submit" class="new1" style="font-size: large" value="Delete"/> <br><br>
+    </div>
+</form>
+<br><br>
+<%
+}
+%>
+
+</div>
+<br><br><br>
+<img src="/images/l1.jpg" style="width: 100%; height: 40px; padding-top: 0%">
+
+</body>
+</html>

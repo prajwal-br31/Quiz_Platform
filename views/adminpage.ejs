@@ -1,0 +1,110 @@
+<!DOCTYPE html >
+<html >
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="../styles/firstpage.css" />
+    <title>Admin</title>
+</head>
+
+<body>
+<div id="page">
+    <div id="pagetop" style="display: inline-block">
+        <img src="/images/purple-logo.jpg" style="width: 200px; height: 65px; position: absolute; left: 0px; ">
+        <div class="links" style=" padding-top: 0px ; position: absolute">
+            <form method="post">
+                <ul>
+                    <li><button formaction="/logout" class="new1" >Logout</button></li>
+                    <li><button formaction="/quizdetail" class="new1">Quiz details</button></li>
+                    <li><button formaction="/adlogin" class="new1"> Settings</button></li>
+                    <li><button formaction="/admins" class="new1" >Departments</button></li>
+                    <li><button formaction="/report" class="new1" >Reports</button></li>
+                </ul>
+            </form>
+        </div>
+        <p style="text-align: right; position: absolute; padding-top: 25px ; float: right; right: 150px; font-size: large">ADMIN PAGE</p>
+        <p style="text-align: center; position: absolute; padding-top: 50px ; float: right; right: 100px;">POWERED BY PRAJWAL BR WEBSITES</p>
+    </div>
+
+    <div id="main">
+
+        <div class="content">
+            <h2 style="color: #07144B">1.CHOOSE DEPARTMENT</h2><br><br>
+
+            <div class="main_body" style="text-align: center">
+                <select id="seldep"  onchange="changeFunc(<%=count%>)" class="Button" style="width: 60%;height: 50px; font-size: large"  >
+
+                    <option disabled selected value> -- select an option -- </option>
+                    <%
+                    console.log(dep);
+                    console.log(count);
+                    for(var i=0;i<parseInt(count);i++)
+                    {
+                        console.log(dep[i]);
+                    %>
+                    <option  value="<%= dep[i]%>"><%=dep[i]%></option>
+                    <%
+                    }
+                    %>
+                </select><br><br>
+
+                <%
+                console.log(dep);
+                console.log(count);
+                for(var i=0;i<parseInt(count);i++)
+                {
+                    console.log(dep[i]);
+                %>
+                <form action="/admin/<%= dep[i] %>" method="get">
+                    <div id=idShowMe>
+                        <button type="submit" class="new1" id="<%= dep[i]%>" value="<%= dep[i]%>"  style="display: none">Go</button>
+                    </div>
+                </form><br>
+                <%
+                }
+                %>
+                <br><br><br>
+
+
+                <form action="/admin" method="get">
+                    <h2 style="color: #07144B">2.ADD NEW DEPARTMENT </h2><br><br>
+                    <label style="font-size: medium; color: #07144B">ENTER THE NAME OF NEW DEPARTMENT :</label>
+                    <input type="text" name="newname" class="new" placeholder="" required="required" style="width: 20%"/>&nbsp;<br><br><br>
+                    <div style="text-align: center">
+                    <button class="new1" type="submit">Add</button>
+                    </div>
+                    <br><br><br><br>
+                </form>
+                <!--<form action="/admin" method="get">-->
+                <!--<h1>&#9654;  Delete Department</h1><br><br>-->
+                <!--<input type="text" name="newname1" class="new" placeholder="Enter the name of department" required="required" />-->
+                <!--<button class="Button" type="submit">Delete</button>-->
+                <!--<br><br><br><br>-->
+                <!--</form>-->
+            </div>
+
+        </div>
+        <div class="clear">&nbsp;</div>
+    </div>
+    <div id="footer">
+        <p>
+        </p>
+    </div>
+</div>
+<script>
+    function changeFunc(count) {
+        var selectBox = document.getElementById("seldep");
+        var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+        disableButtons(selectBox,count);
+        document.getElementById(selectedValue).style.display = 'block';
+    }
+    function disableButtons(selectBox,count) {
+        for(var i =1 ; i<=count ; i++){
+            var value = selectBox.options[i].value;
+            document.getElementById(value).style.display = 'none';
+        }
+    }
+</script>
+<img src="/images/l1.jpg" style="width: 100%; height: 40px; padding-top: 5%">
+
+</body>
+</html>

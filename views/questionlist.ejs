@@ -1,0 +1,74 @@
+<!DOCTYPE html >
+<html >
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="/styles/style.css" />
+
+    <title>Admin</title>
+    <style>
+        body{
+            background: white;
+        }
+    </style>
+</head>
+
+<body>
+<div>
+    <img src="/images/top.jpg" style="position: absolute; width: 100%"/>
+
+    <form action="/admin/<%=dept%>" method="get" style="text-align: left;float: right; position: absolute; right: 0px; padding-top: 10px">
+
+        <button type="submit" name="back" class="myButton" value="Back" style="font-size: large; border: none; box-shadow: none; background:   #1C183D">&#9664;  Back</button><br>
+    </form>
+</div>
+<%
+var s1=dept;
+var s2=s1.toUpperCase();
+%>
+<div style="padding-top: 10%">
+    <h2 style="color: black; text-align: center">DELETE QUESTIONS FROM <%=s2%> DEPARTMENT</h2><br><br>
+    <h2 style="color: black; font-size:large">Select questions to delete and click on delete button.</h2>
+    <h3 style="color: red; text-decoration: underline; text-decoration-color: black">NOTE: Questions once deleted will be permanently deleted from database</h3><br><br>
+    <h2 style="text-align: center; color: black">QUESTION LIST</h2>
+    <form action="/admin/questionlist/<%=dept%>" method="get">
+        <table border="1" id="tableSearch" class="responstable">
+            <tr>
+                <td><b>Select</b></td>
+                <td><b>S.No</b></td>
+                <td><b>Question</b></td>
+                <td><b>Option 1</b></td>
+                <td><b>Option 2</b></td>
+                <td><b>Option 3</b></td>
+                <td><b>Option 4</b></td>
+                <td><b>Answer</b></td>
+            </tr>
+
+
+            <%
+            for(var i = 0;i < parseInt(count);i++)
+            {
+            %>
+            <tr>
+                <td><b><input type="checkbox" name="question" value="<%=questions[i]%>"/></b></td>
+                <td><b><%= qno[i]%></b></td>
+                <td><b><%= questions[i] %></b></td>
+                <td><b><%= option1[i]%></b></td>
+                <td><b><%= option2[i]%></b></td>
+                <td><b><%= option3[i]%></b></td>
+                <td><b><%= option4[i]%></b></td>
+                <td><b><%= correct[i]%></b></td>
+            </tr>
+            <%
+            }
+            %>
+        </table>
+        <div style="text-align: center">
+        <input type="submit" class="Button"  style="color: black" value="Delete"/>
+        </div>
+    </form>
+    <br><br><br><br><br>
+</div>
+<img src="/images/l1.jpg" style="width: 100%; height: 40px; padding-top: 0%">
+
+</body>
+</html>

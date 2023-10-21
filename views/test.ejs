@@ -1,0 +1,168 @@
+<!DOCTYPE html >
+<html >
+<head>
+    <style>
+        body{
+            background: whitesmoke;
+        }
+    </style>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="../styles/new.css" />
+    <title>Msrmh-Quiz page</title>
+
+</head>
+<style>
+    input[type='radio'] { transform: scale(2); }
+</style>
+
+<body>
+<div style="width: 100%">
+    <div style="display: block; font-size: 0px;white-space: nowrap; overflow: hidden; background-size: 100% 100%;">
+        <div style="display: inline-block; height: auto">
+            <img src="/images/purple-logo.jpg" alt="" />
+        </div>
+        <div style="display: inline-block;">
+            <img style="width: inherit" src="/images/logo1.jpg" alt="" />
+        </div>
+    </div> <div style="float: right; width: 30%;">
+        <h1 style="color: black; text-align: center; font-family:'Segoe MDL2 Assets'">TIME REMAINING :       <div id="timer"><%=tl%></div> </h1><br>
+        <h3 style="text-align: center; text-decoration: underline">Select question number to navigate</h3>
+        <h3 style="text-align: center; text-decoration: underline;"><div style="color: green;display: inline">Green</div>  &#8658; Answered questions</h3>
+
+        <div class="button-container">
+            <div id="select"></div>
+            <% for (var i = 0;i < r;i++){
+                var flag = 0;
+                for (var k = 0; k < selectedc; k++) {
+                    if (parseInt(selected[k]) == i + 1 && value[i]!==null) {
+                        flag = 1;
+                        break;
+                    }
+                }
+            if(flag == 1){
+            %>
+
+            <a href="/test?questionnumber=<%= i + 1 %>"> <input type="submit" class="btn-2e" value="<%= i + 1 %>"
+                                                                style="background: green; color: black;"></a>
+            <% }
+            else{ %>
+
+            <a href="/test?questionnumber=<%= i + 1 %>"> <input type="submit" class="btn-2e" value="<%= i + 1 %>"></a>
+            <%
+            }
+            }
+            %>
+
+        </div><br><br><br><br><br>
+        <div style="text-align: center;">
+        </div>
+        <div style="text-align: center;">
+            <% if(parseInt(questionnum) === parseInt(r)){ %>
+            <a>
+                <button class="btn" style="background: #07144B; color: white" onclick="fun()">Finish Test</button>
+            </a>
+            <% } %>
+            <% for(var j = 0;j < selectedc;j++){ %>
+            <% if(parseInt(selected[j]) === parseInt(questionnum)){ %>
+            <script>
+                document.getElementById("select").innerHTML = "";
+            </script>
+            <% } %>
+            <% } %>
+        </div>
+        <script>
+            function fun() {
+                var ask = window.confirm("DO YOU WANT TO FINISH THE TEST?");
+                if (ask) {
+                    delete_cookie('seconds');
+                    delete_cookie('minutes');
+                    window.location.href = "/fin";
+                }
+            }
+        </script>
+    </div>
+
+    <div style="float: left; width: 65%">
+        <div style="width:2px; background-color:#07144B; height: 100%;position:absolute; padding-top: inherit ; left:65%; ">&nbsp;</div>
+        <script type="text/javascript">
+            var timeoutHandle;
+            function countdown(minutes,stat) {
+                var seconds = 60;
+                var mins = minutes;
+                if(getCookie("minutes")&&getCookie("seconds")&&stat)
+                {
+                    seconds = getCookie("seconds");
+                    mins = getCookie("minutes");
+                }
+                function tick() {
+                    var counter = document.getElementById("timer");
+                    setCookie("minutes",mins)
+                    setCookie("seconds",seconds)
+                    var current_minutes = mins-1
+                    seconds--;
+                    counter.innerHTML = current_minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
+                    //save the time in cookie
+                    if(parseInt(seconds)===1&&parseInt(mins)===1){
+                        delete_cookie('seconds');
+                        delete_cookie('minutes');
+                        window.location = '/fin';
+                    }
+                    if( seconds > 1 ) {
+                        timeoutHandle=setTimeout(tick, 1000);
+                    } else {
+                        if(mins > 1){
+                            // countdown(mins-1);   never reach “00″ issue solved:Contributed by Victor Streithorst
+                            setTimeout(function () { countdown(parseInt(mins)-1,false); }, 1000);
+                        }
+                    }
+                }
+                tick();
+            }
+            function delete_cookie(name) {
+                document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+            }
+            function setCookie(cname,cvalue) {
+                document.cookie = cname+"="+cvalue;
+            }
+            function getCookie(cname) {
+                var name = cname + "=";
+                var ca = document.cookie.split(';');
+                for(var i=0; i<ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0)===' ') c = c.substring(1);
+                    if (c.indexOf(name) === 0) {
+                        return c.substring(name.length, c.length);
+                    }
+                }
+                return "";
+            }
+            countdown(parseInt('<%=tl%>'),true);
+        </script>
+        <BR><BR>
+        <center>QUESTION <%= questionnum %>/<%= r %></center>
+        <br>
+        <div style="font-size: large; padding-left: 2%; margin: auto; font-family: 'Adobe Caslon Pro'">
+
+            <h2 style="color: black;"><%= questionnum %>.<%= question %></h2>
+            <form action="collect" method="get">
+                <blockquote>
+                    <p>
+                    <h3 style="color: black"><input type="radio" name='q' value="1"> A. <%= option1 %><br></h3>
+                    <h3 style="color: black"><input type="radio" name='q' value="2"> B. <%= option2 %><br></h3>
+                    <h3 style="color: black"><input type="radio" name='q' value="3"> C. <%= option3 %><br></h3>
+                    <h3 style="color: black"><input type="radio" name='q' value="4"> D. <%= option4 %></h3>
+                    </p>
+                    <br>
+                </blockquote>
+                <% if(questionnum <= r){ %>
+                <input type="submit" class="btn" style="background: #07144B; color: white" value="Submit/Next" >
+                <% } %>
+                <input type="text" value=" <%= questionnum %>" name="num" hidden>
+            </form>
+
+        </div>
+    </div>
+</div>
+<img src="/images/l1.jpg" style="width: 100%; height: 40px; padding-top: 20%">
+</body>
+</html>

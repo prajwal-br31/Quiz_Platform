@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LOGIN-Msrmh</title>
+    <link rel="stylesheet" type="text/css" href="../styles/firstpage.css" />
+</head>
+<body>
+<div id="page">
+    <div id="pagetop">
+        <p ><img src="/images/purple-logo.jpg" style="width: 200px; height: 80px; float: left; position: absolute; left: 0px; "><div style="font-size: x-large ; text-align: center; padding-top: 2%">LOGIN FORM</div><div  style="font-size: medium ; text-align: center; padding-top: 1%">POWERED BY PRAJWAL BR WEBSITES</div></p>
+    </div>
+    <div id="header">* Required </div>
+    <div id="main">
+        <div class="content">
+            <div class="form-style-5">
+                <form action="/userform" method="post">
+                    <fieldset >
+                    <p id="lessQuestions" style="color: red; text-align: center"><%=msg%></p><br><br>
+                        <legend><span class="number">1</span> Enter Info</legend>
+                        <label style="font-family: 'Bookman Old Style';color: #267B9B ;font-size: medium ;display: inline">Enter your name: * <br></label>
+                        <input type="text" name="field1" placeholder="Your Name *" required="required" >
+                        <div id="errfn" style="color: red;text-align: center;font-size: medium"></div><br>
+                        <label style="font-family: 'Bookman Old Style';color: #267B9B ;font-size: medium ;display: inline">Enter your age: *<br></label>
+                        <input type="number" id="age" name="field13" onchange="ageLimit()" placeholder="Your Age *" required="required" >
+                        <label style="font-family: 'Bookman Old Style';color: #267B9B ;font-size: medium ;display: inline">Enter your email:  <br></label>
+                        <input type="email" name="field2" placeholder="Your Email ">
+                        <label style="font-family: 'Bookman Old Style';color: #267B9B ;font-size: medium ;display: inline">Enter your mobile number: * <br></label>
+                        <input type="number" name="field3" placeholder="Your mobile number *" required="required">
+                        <label style="font-family: 'Bookman Old Style';color: #267B9B ;font-size: medium ; display:inline">Enter Qualifications (Starting from highest) *<br>
+                            <input type="text" name="field6" placeholder="" required="required" style="width: 30%">
+                            <input type="text" name="field7" placeholder="" style="width: 30%">
+                            <input type="text" name="field8" placeholder="" style="width: 30%">
+                        </label>
+                        <label style="font-family: 'Bookman Old Style';color: #267B9B ;font-size: medium ;display: inline">Enter Knc registration Number and year of passing: * <br>
+
+                            <input type="text" name="field9" placeholder="KNC Reg No*" required="required" style="width: 45%" >
+                            <input type="text" name="field15" placeholder="KNC Year of passing*" required="required" style="width: 45%" >
+                        </label>
+                        <label style="font-family: 'Bookman Old Style';color: #267B9B ;font-size: medium ;display: inline">Post KNC experience in years: *<br></label>
+
+                        <input type="text" name="field14" placeholder="" required="required" >
+                        <label style="font-family: 'Bookman Old Style';color: #267B9B ;font-size: medium ;display: inline">Present/Last job :  *<br></label>
+                        <input type="text" name="field10" placeholder="Present/Last job*" required="required" >
+                        <div id="errfn1" style="color: red;text-align: center;font-size: medium"></div><br>
+
+                        <label style="font-family: 'Bookman Old Style';color: #267B9B ;font-size: medium ;display: inline">Enter Salary Details (per annum) : *<br>
+
+                            <input type="number" id="presentSalary" name="field11" placeholder="Present/Last Drawn *" onchange="salaryLimit('presentSalary')" required="required" style="width: 40%">
+                            <input type="number" id="expectedSalary" name="field12" placeholder="Expected *" onchange="salaryLimit('expectedSalary')" required="required" style="width: 40%">
+                        </label>
+                        <script>
+                            function salaryLimit(y){
+                                var x = document.getElementById(y).value;
+                                if(x>9999999) {
+                                    document.getElementById('errfn1').innerHTML = "Please enter correct salary details";
+                                    document.getElementById(y).value = null;
+                                }
+                                else
+                                    document.getElementById('errfn1').innerHTML = "" ;
+
+                            }
+                            function ageLimit(){
+                                var x = document.getElementById('age').value;
+                                if(x>60) {
+                                    document.getElementById('errfn').innerHTML = "Please enter age less then 60";
+                                    document.getElementById('age').value = null;
+                                }
+                            else
+                                    document.getElementById('errfn').innerHTML = "" ;
+
+                            }
+                        </script>
+
+                        <label for="job" style="font-family: 'Bookman Old Style';color: #267B9B ;font-size: medium ">Select Department : *</label>
+                        <select id="job" name="field4">
+                            <%
+                            for(var i=0;i<arrlength;i++)
+                            {
+                            %>
+                            <option value="<%=arr[i]%>"><%=arr[i]%></option>
+                            <%
+                            }
+                            %>
+                        </select>
+                        <label for="job" style="font-family: 'Bookman Old Style';color: #267B9B ;font-size: medium ">Enter password : *</label>
+                        <input type="password" name="field5" placeholder="password*" required="required">
+                    </fieldset>
+                    <input type="submit" value="START" />
+                </form>
+            </div>
+        </div>
+    </div>
+<div id="footer" style="padding-top: 0px"></div>
+</div>
+<img src="/images/l1.jpg" style="width: 100%; height: 40px; padding-top: 4%">
+
+</body>
+</html>
